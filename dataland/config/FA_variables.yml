@@ -1,0 +1,80 @@
+SFX.AVG_ZS:
+  comment: Area-weighted mean elevation within the grid cell
+  long_name: Average surface elevation
+  units: m
+SFX.CLAY:
+  comment: Fraction of soil composed of clay (0-1)
+  long_name: Clay fraction
+  units: '1'
+SFX.COVER006:
+  comment: Fraction of grid cell covered by permanent snow
+  long_name: Fraction of permanemt snow cover
+  units: '1'
+SFX.FRAC_NATURE:
+  comment: Fraction of grid cell covered by natural vegetation (0-1)
+  long_name: Natural land fraction
+  units: '1'
+SFX.FRAC_SEA:
+  comment: Fraction of grid cell covered by sea/ocean (0-1)
+  long_name: Sea fraction
+  units: '1'
+SFX.FRAC_TOWN:
+  comment: Fraction of grid cell classified as urban/built-up (0-1)
+  long_name: Urban/town fraction
+  units: '1'
+SFX.FRAC_WATER:
+  comment: Fraction of grid cell covered by inland water (lakes, rivers) (0-1)
+  long_name: Inland water fraction
+  units: '1'
+SFX.MAX_ZS:
+  comment: Maximum elevation within the grid cell
+  long_name: Maximum surface elevation
+  units: m
+SFX.MIN_ZS:
+  comment: Minimum elevation within the grid cell
+  long_name: Minimum surface elevation
+  units: m
+SFX.SAND:
+  comment: Fraction of soil composed of sand (0-1)
+  long_name: Sand fraction
+  units: '1'
+SFX.SIL_ZS:
+  comment: Sillouette elevation within the grid cell
+  long_name: Sillouette surface elevation
+  units: '1'
+SFX.SSO_ANIS:
+  comment: Anisotropy ratio for sub-grid surface variability (unitless)
+  long_name: sub-grid surface elevation anisotropy
+  units: '1'
+SFX.SSO_DIR:
+  comment: Preferred direction for anisotropy / surface orientation
+  long_name: SSO direction
+  units: degrees
+SFX.SSO_SLOPE:
+  comment: Representative slope for sub-grid surface object
+  long_name: SSO slope
+  units: '1'
+SFX.SSO_STDEV:
+  comment: Standard deviation of the sub-grid orography
+  long_name: sub-grid standard deviation
+  units: '1'
+SFX.Z0:
+  comment: Roughness length for momentum
+  long_name: Surface roughness length
+  units: m
+SFX.Z0H:
+  comment: Scalar roughness length for heat/temperature exchange
+  long_name: Heat roughness length (z0h)
+  units: m
+SFX.ZS:
+  comment: Representative surface elevation or terrain height
+  long_name: Surface elevation (ZS)
+  units: m
+X002H_TREE:
+  comment: Mean canopy/tree height over grid cell
+  long_name: Tree height
+  units: m
+X002PATCH:
+  comment: Fraction of high vegetation within the nature land tile
+  long_name: Patch index
+  units: '1'

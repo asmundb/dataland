@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataland"
+version = "0.1.0"
+description = "process land data"
+authors = [
+    { name = "Åsmund Bakketun", email = "asmundb@met.no" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = [
+    "numpy",
+    "xarray",
+    "topo_descriptors",
+    "cartopy"
+]
+
+[project.optional-dependencies]
+fa = ["epygram"]

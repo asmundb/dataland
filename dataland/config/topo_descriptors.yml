@@ -1,0 +1,23 @@
+default:
+  scales:
+  - 75000
+  - 12500
+  - 17500
+   
+variables:
+  SFX.ZS:
+    descriptors:
+      sx:
+        azimuths: [180]
+        scales: [12500]
+      gradient: {}
+      std: {}
+      tpi:
+        scales: [12500]
+      valley_ridge:
+        mode: "valley" 
+      
+  SFX.FRAC_NATURE:
+    descriptors:
+      tpi:
+        scales: [12500]
