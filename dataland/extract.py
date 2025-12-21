@@ -20,6 +20,10 @@ def read_state_fa(r, varnames=None):
 pgdfile = "/nobackup/prod1/cooper/harmonie/MEPS_prod/climate/METCOOP25D/PGD.fa"
 prepfile = glob.glob("/nobackup/prod1/cooper/harmonie/MEPS_prod/archive/*/*/*/*/mbr001/ICMSHHARM+0003.sfx")[-1]
 
+# read x and y and lon and lat from meps file
+meps_filepath = "https://thredds.met.no/thredds/dodsC/meps25epsarchive/2025/12/15/meps_det_2_5km_20251215T21Z.nc",
+meps = xr.open_dataset(meps_filepath)
+
 output_filename = "MEPS_raw_forcings.nc"
 
 config_filename = str(resources.files("dataland.config").joinpath("FA_variables.yml"))
@@ -78,5 +82,13 @@ ds.attrs.update({
     "title": "Forcings from FA/PGD",
     "source_files": f"{prepfile}, {pgdfile}"
 })
+
+ds["x"] = meps["x"]
+ds["y"] = meps["y"]
+ds = ds.assign(
+    longitude=(("y","x"), meps["longitude"].values),
+    latitude=(("y","x"), meps["latitude"].values)
+)
+
 
 ds.to_netcdf(output_filename)
