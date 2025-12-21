@@ -126,7 +126,7 @@ def get_args():
         "raw_filepath": "/lustre/storeB/users/asmundb/dataset/decoder/MEPS_raw_forcings.nc",
         "output_filepath": "forcings_with_topo_descriptors.nc",
     }
-    
+
     parser = argparse.ArgumentParser(description="Compute topo descriptors and merge with MEPS forcings")
 
     parser.add_argument(
