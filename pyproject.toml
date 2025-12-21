@@ -21,6 +21,7 @@ dependencies = [
 
 [project.optional-dependencies]
 fa = ["epygram"]
+anemoi = ["anemoi-datasets"]
 
 [tool.setuptools.package-data]
 dataland = ["config/*.yaml"]
