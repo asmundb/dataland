@@ -21,3 +21,6 @@ dependencies = [
 
 [project.optional-dependencies]
 fa = ["epygram"]
+
+[tool.setuptools.package-data]
+dataland = ["config/*.yaml"]

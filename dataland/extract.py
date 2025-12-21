@@ -26,7 +26,7 @@ meps = xr.open_dataset(meps_filepath)
 
 output_filename = "MEPS_raw_forcings.nc"
 
-config_filename = str(resources.files("dataland.config").joinpath("FA_variables.yml"))
+config_filename = str(resources.files("dataland.config").joinpath("FA_variables.yaml"))
 
 # Define variable metadata 
 with open(config_filename, "r") as f:
