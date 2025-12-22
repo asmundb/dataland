@@ -24,6 +24,7 @@ DESCRIPTOR_FUNCS = {
     "sx": topo.compute_sx,
     "valley_ridge": topo.compute_valley_ridge,
 }
+ 
 
 def make_dem_file(filename, varname="SFX.ZS"):
     ds = get_dem_netcdf(filename)
@@ -102,7 +103,7 @@ def main(args):
         ds1 = xr.open_mfdataset(str(f"{variable}/topo_*.nc"))
         ds1 = ds1.rename({v: f"{variable}_{v}" for v in ds1.data_vars})
         ds = xr.merge([ds1, ds])
-        shutil.rmtree(variable)
+        #shutil.rmtree(variable)
     
     #for v in ds.data_vars:
     #    ds[v].attrs[""] = crs_str
