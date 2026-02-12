@@ -94,7 +94,6 @@ def main(args):
         cfg["variables"][var_name] = {**cfg["default"], **var_cfg}
     
     ds = xr.open_dataset(raw_filename)
-    #crs_str = "+proj=lcc +lat_0=63.3 +lon_0=15 +lat_1=63.3 +lat_2=63.3 +a=6371000 +b=6371000 +x_0=0 +y_0=0 +units=m +no_defs"
 
     for variable in cfg["variables"]:
         dem_filename = make_dem_file(raw_filename, varname=variable)
@@ -105,13 +104,22 @@ def main(args):
         ds = xr.merge([ds1, ds])
         #shutil.rmtree(variable)
     
-    #for v in ds.data_vars:
-    #    ds[v].attrs[""] = crs_str
+    
     del ds.attrs["crs"]
     dt = pd.to_datetime("2025-12-15")
     ds = ds.expand_dims(time=[dt])
+    ds["SFX.SSO_ANIS"] = ds["SFX.SSO_ANIS"].fillna(1.0)
+    ds = ds.fillna(0.0)
+    # decompose SSO_DIR
+    ds["subgrid_slope_x"] = ds["SFX.SSO_SLOPE"]*np.cos(2*ds["SFX.SSO_DIR"])
+    ds["subgrid_slope_y"] = ds["SFX.SSO_SLOPE"]*np.sin(2*ds["SFX.SSO_DIR"])
+    for var in ds:
+        if "VALLEY_NORM" in var:
+            ds[f"{var}_x"] = ds[var]*np.cos(2*ds[var.replace("NORM", "DIR")])
+            ds[f"{var}_y"] = ds[var]*np.sin(2*ds[var.replace("NORM", "DIR")])
     ds.to_netcdf(output_filename, mode="w")
-    
+
+
 def get_args():
     import argparse
     

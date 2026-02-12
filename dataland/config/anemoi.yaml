@@ -1,19 +1,28 @@
 name: sfx-test-2025-2025-6h-v1
 
-description: test dataset for sfx
+description: Physiography fields from surfex and topography descriptors
 
 attribution: metno/surfex
 
 licence: CC-BY-4.0
 
 dates:
-  start: '2025-12-15T00:00:00'
-  end: '2025-12-15T00:00:00'
-  frequency: 1h
+  start: '2020-01-01T00:00:00'
+  end: '2027-01-01T00:00:00'
+  frequency: 8760h
+
+build:
+  group_by: 4
+
+output:
+  chumking: {dates: 1}
 
 input:
-  netcdf:
-    path: "forcings_with_topo_descriptors.nc"
+  repeated-dates:
+    mode: constant
+    source:
+      netcdf:
+        path: "forcings_with_topo_descriptors.nc"
 
 statistics:
-  allow_nans: true
+  allow_nans: false
