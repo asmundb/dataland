@@ -1,6 +1,6 @@
 name: sfx-test-2025-2025-6h-v1
 
-description: Physiography fields from surfex and topography descriptors
+description: test dataset for sfx
 
 attribution: metno/surfex
 
@@ -15,7 +15,8 @@ build:
   group_by: 4
 
 output:
-  chumking: {dates: 1}
+  chunking: {dates: 1}
+
 
 input:
   repeated-dates:

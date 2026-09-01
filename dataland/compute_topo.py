@@ -102,13 +102,13 @@ def main(args):
         ds1 = xr.open_mfdataset(str(f"{variable}/topo_*.nc"))
         ds1 = ds1.rename({v: f"{variable}_{v}" for v in ds1.data_vars})
         ds = xr.merge([ds1, ds])
-        #shutil.rmtree(variable)
-    
+        shutil.rmtree(variable)
     
     del ds.attrs["crs"]
     dt = pd.to_datetime("2025-12-15")
     ds = ds.expand_dims(time=[dt])
-    ds["SFX.SSO_ANIS"] = ds["SFX.SSO_ANIS"].fillna(1.0)
+    if "SFX.SSO_ANIS" in ds:
+        ds["SFX.SSO_ANIS"] = ds["SFX.SSO_ANIS"].fillna(1.0)
     ds = ds.fillna(0.0)
     # decompose SSO_DIR
     ds["subgrid_slope_x"] = ds["SFX.SSO_SLOPE"]*np.cos(2*ds["SFX.SSO_DIR"])
@@ -159,7 +159,6 @@ def get_args():
 
     return parser.parse_args()
     
-
 
 if __name__ == "__main__":
     
