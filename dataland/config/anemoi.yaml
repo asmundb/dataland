@@ -17,7 +17,6 @@ build:
 output:
   chunking: {dates: 1}
 
-
 input:
   repeated-dates:
     mode: constant

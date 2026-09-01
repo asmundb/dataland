@@ -1,0 +1,38 @@
+name: ecoclimapsg-test-2025-2025-6h-v1
+
+description: Physiography fields from surfex and topography descriptors
+
+attribution: metno/surfex
+
+licence: CC-BY-4.0
+
+dates:
+  start: '2020-01-01T00:00:00'
+  end: '2027-01-01T00:00:00'
+  frequency: 8760h
+
+build:
+  group_by: 4
+
+output:
+  chunking: {dates: 1}
+
+
+input:
+  repeated-dates:
+    mode: constant
+    source:
+      join:
+        - netcdf:
+            path: "fractions_o96.nc"
+        - pipe:
+          - netcdf:
+              path: "treeheights_O96_2.nc"
+              param: ["H_TREE"]
+          - rename:
+              param: "treeheight"
+
+      
+statistics:
+  allow_nans: false
+
