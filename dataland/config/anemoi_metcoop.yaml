@@ -1,0 +1,82 @@
+name: ecoclimapsg-test-2025-2025-6h-v1
+
+description: Physiography fields from surfex and topography descriptors
+
+attribution: metno/surfex
+
+licence: CC-BY-4.0
+
+dates:
+  start: '1979-01-01T00:00:00'
+  end: '2027-01-01T00:00:00'
+  frequency: 8760h
+
+build:
+  group_by: 4
+
+output:
+  chunking: {dates: 1}
+
+
+input:
+  repeated-dates:
+    mode: constant
+    source:
+      join:
+        - netcdf:
+            path: "data/output_data/fractions_metcoop.nc"
+            param: ["sea", "lake","nature","urban","glacier","forest"]
+        - pipe:
+          - netcdf:
+              path: "data/output_data/tree_height_metcoop.nc"
+              param: ["mean"]
+          - rename:
+              param: "treeheight"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/std_oro_metcoop_50000.nc"
+              param: ["std"]
+          - rename:
+              param: "sdor_100"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/std_oro_metcoop_15000.nc"
+              param: ["std"]
+          - rename:
+              param: "sdor_30"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/std_oro_metcoop_2500.nc"
+              param: ["std"]
+          - rename:
+              param: "sdor_2p5"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/slope_oro_metcoop_50000.nc"
+              param: ["slope_x", "slope_y"]
+          - rename:
+              param:
+                  slope_x: "slor_x_100"
+                  slope_y: "slor_y_100"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/slope_oro_metcoop_15000.nc"
+              param: ["slope_x", "slope_y"]
+          - rename:
+              param:
+                  slope_x: "slor_x_30"
+                  slope_y: "slor_y_30"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/slope_oro_metcoop_2500.nc"
+              param: ["slope_x", "slope_y"]
+          - rename:
+              param:
+                  slope_x: "slor_x_2p5"
+                  slope_y: "slor_y_2p5"
+              
+            
+      
+statistics:
+  allow_nans: false
+

@@ -7,7 +7,7 @@ attribution: metno/surfex
 licence: CC-BY-4.0
 
 dates:
-  start: '2020-01-01T00:00:00'
+  start: '1979-01-01T00:00:00'
   end: '2027-01-01T00:00:00'
   frequency: 8760h
 
@@ -24,15 +24,28 @@ input:
     source:
       join:
         - netcdf:
-            path: "fractions_o96.nc"
+            path: "data/output_data/fractions_o96.nc"
         - pipe:
           - netcdf:
-              path: "treeheights_O96_2.nc"
-              param: ["H_TREE"]
+              path: "data/output_data/tree_height_o96.nc"
+              param: ["h_tree_mean"]
           - rename:
               param: "treeheight"
-
-      
+        - pipe:
+          - netcdf:
+              path: "data/output_data/std_oro_o96_100.nc"
+              param: ["std_oro_100km"]
+          - rename:
+              param: "sdor_100"
+        - pipe:
+          - netcdf:
+              path: "data/output_data/slope_oro_o96_100.nc"
+              param: ["orography_slope_x", "orography_slope_y"]
+          - rename:
+              param:
+                  orography_slope_x: "slor_x_100"
+                  orography_slope_y: "slor_y_100"  
+        
 statistics:
   allow_nans: false
 
